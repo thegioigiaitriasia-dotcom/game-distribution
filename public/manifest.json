@@ -1,0 +1,16 @@
+{
+  "name": "ArcadeHub - Free Unblocked Games",
+  "short_name": "ArcadeHub",
+  "description": "Play 10,000+ free games online instantly.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#020617",
+  "theme_color": "#06b6d4",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    }
+  ]
+}

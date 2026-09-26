@@ -1,0 +1,14 @@
+{
+  "manifest_version": 3,
+  "name": "ArcadeHub - 10,000+ Free Unblocked Games",
+  "version": "1.0.0",
+  "description": "Play thousands of free HTML5 games instantly on your new tab. No downloads, no blocked sites!",
+  "chrome_url_overrides": {
+    "newtab": "newtab.html"
+  },
+  "icons": {
+    "16": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
+  }
+}
