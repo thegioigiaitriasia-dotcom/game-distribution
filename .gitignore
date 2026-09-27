@@ -43,3 +43,5 @@ next-env.d.ts
 # Video Bot Generated Clips
 video-bot/clips/
 video-bot/out/
+video-bot/node_modules/
+video-bot/bot-profile/  

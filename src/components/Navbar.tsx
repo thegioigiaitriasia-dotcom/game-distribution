@@ -17,7 +17,7 @@ export default function Navbar() {
       <div className="flex-1 md:hidden">
         {/* Mobile Logo */}
         <Link href="/" className="text-xl font-black bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
-          🕹️ ArcadeHub
+          🕹️ ArcadeGameFree
         </Link>
       </div>
       
@@ -38,8 +38,7 @@ export default function Navbar() {
 
       <div className="flex-1 flex justify-end gap-3">
          <button className="md:hidden text-slate-300 text-xl">🔍</button>
-         <button className="hidden md:block text-slate-300 hover:text-white font-medium transition text-sm">Random Game</button>
-         <button className="bg-slate-800 hover:bg-slate-700 text-white px-4 py-1.5 rounded-full text-sm font-bold border border-slate-700 transition">Log in</button>
+         {/* Removed redundant Login and Random Game buttons */}
       </div>
     </header>
   );

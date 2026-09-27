@@ -55,11 +55,57 @@ export default async function Home({ searchParams }: { searchParams: { q?: strin
         </div>
       )}
 
+      {/* Affiliate Deals Section (Only on main homepage) */}
+      {!searchQuery && !categoryFilter && deals && deals.length > 0 && (
+        <div className="space-y-6 pb-10 border-b border-slate-800/60">
+          <div className="flex items-center justify-between mb-8">
+            <h2 className="text-3xl md:text-4xl font-black flex items-center gap-3 drop-shadow-xl">
+              <span className="text-3xl md:text-4xl">🛍️</span> 
+              <span className="bg-gradient-to-r from-pink-500 to-rose-500 bg-clip-text text-transparent uppercase tracking-tight">Gamer's Deals</span> 
+              <span className="text-xs font-bold text-white bg-gradient-to-r from-pink-500 to-rose-500 px-3 py-1 rounded-full hidden sm:inline-block drop-shadow-none ml-2">AI Selected</span>
+            </h2>
+            <Link href="/deals" className="text-cyan-400 text-sm font-bold hover:text-cyan-300 transition">View all &rarr;</Link>
+          </div>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {deals.map((deal: any) => (
+              <div key={deal.id} className="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden hover:border-purple-500 transition-colors group flex flex-col shadow-lg">
+                <div className="h-40 bg-slate-800 overflow-hidden relative">
+                  {deal.discount_percentage > 0 && (
+                    <span className="absolute top-2 left-2 bg-red-500 text-white text-xs font-black px-2 py-1 rounded shadow-lg z-10">
+                      -{deal.discount_percentage}%
+                    </span>
+                  )}
+                  <img src={deal.image_url} alt={deal.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 opacity-90 group-hover:opacity-100 bg-white" />
+                </div>
+                <div className="p-4 space-y-3 flex flex-col flex-grow">
+                  <span className="text-[10px] font-bold text-purple-400 tracking-wider uppercase">🔥 {deal.trending_topics?.keyword || 'Hot Deal'}</span>
+                  <h3 className="text-white text-sm font-bold leading-snug line-clamp-2">{deal.title}</h3>
+                  <div className="flex items-end gap-2 mt-auto">
+                    <span className="text-xl font-black text-cyan-400">{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(deal.discount_price)}</span>
+                    {deal.original_price > deal.discount_price && (
+                      <span className="text-xs text-slate-500 line-through mb-1">{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(deal.original_price)}</span>
+                    )}
+                  </div>
+                  <a href={deal.tracking_link || '#'} target="_blank" rel="noopener noreferrer" className="block w-full mt-4 bg-slate-800 hover:bg-purple-600 text-white font-bold py-2 rounded-lg transition-colors text-center text-sm">
+                    Mua Ngay &rarr;
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
       {/* Title for the games grid */}
-      <h2 className="text-2xl font-bold text-white flex items-center gap-2">
-        {searchQuery ? `🔍 Search results for "${searchQuery}"` : 
-         categoryFilter ? `🕹️ ${categoryFilter.toUpperCase()} Games` : 
-         '🔥 Trending Now'}
+      <h2 className="text-3xl md:text-5xl font-black flex items-center gap-3 drop-shadow-xl mt-4 mb-6">
+        {searchQuery ? (
+          <><span className="text-cyan-400">🔍 Search results for</span> <span className="text-white">"{searchQuery}"</span></>
+        ) : categoryFilter ? (
+          <><span className="text-3xl md:text-4xl">🕹️</span> <span className="bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">{categoryFilter.toUpperCase()} GAMES</span></>
+        ) : (
+          <><span className="text-3xl md:text-4xl">🔥</span> <span className="bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">Trending Now</span></>
+        )}
       </h2>
       
       {/* Games Grid (Infinite Scroll) */}
@@ -68,40 +114,6 @@ export default async function Home({ searchParams }: { searchParams: { q?: strin
         searchQuery={searchQuery} 
         categoryFilter={categoryFilter} 
       />
-
-      {/* Affiliate Deals Section */}
-      <div className="space-y-6 pt-10 mt-10 border-t border-slate-800/60">
-        <div className="flex items-center justify-between">
-          <h2 className="text-2xl font-bold text-white flex items-center gap-2">
-            🛍️ Gamer's Deals <span className="text-xs font-normal text-slate-400 bg-slate-800 px-3 py-1 rounded-full hidden sm:inline-block">AI Selected</span>
-          </h2>
-          <button className="text-cyan-400 text-sm font-bold hover:text-cyan-300 transition">View all &rarr;</button>
-        </div>
-        
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {deals?.map((deal: any) => (
-            <div key={deal.id} className="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden hover:border-purple-500 transition-colors group flex flex-col shadow-lg">
-              <div className="h-40 bg-slate-800 overflow-hidden relative">
-                <span className="absolute top-2 left-2 bg-red-500 text-white text-xs font-black px-2 py-1 rounded shadow-lg z-10">
-                  -{deal.discount_percentage}%
-                </span>
-                <img src={deal.image_url} alt={deal.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 opacity-90 group-hover:opacity-100" />
-              </div>
-              <div className="p-4 space-y-3 flex flex-col flex-grow">
-                <span className="text-[10px] font-bold text-purple-400 tracking-wider uppercase">🔥 {deal.trending_topics?.keyword || 'Hot Deal'}</span>
-                <h3 className="text-white text-sm font-bold leading-snug line-clamp-2">{deal.title}</h3>
-                <div className="flex items-end gap-2 mt-auto">
-                  <span className="text-xl font-black text-cyan-400">${deal.discount_price}</span>
-                  <span className="text-xs text-slate-500 line-through mb-1">${deal.original_price}</span>
-                </div>
-                <a href={deal.tracking_link || '#'} target="_blank" rel="noopener noreferrer" className="block w-full mt-4 bg-slate-800 hover:bg-purple-600 text-white font-bold py-2 rounded-lg transition-colors text-center text-sm">
-                  Grab Deal &rarr;
-                </a>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
     </div>
   );
 }

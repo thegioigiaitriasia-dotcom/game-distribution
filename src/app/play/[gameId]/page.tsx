@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: { params: { gameId: string } 
   if (!game) return { title: 'Game Not Found' };
   
   return {
-    title: `Play ${game.title} Unblocked & Free Online - ArcadeHub`,
+    title: `Play ${game.title} Unblocked & Free Online - ArcadeGameFree`,
     description: `Play ${game.title} unblocked at school! ${game.description || 'No download required. Click and play instantly!'}`.substring(0, 160),
     openGraph: {
       title: `${game.title} - Play Free Unblocked`,
@@ -79,7 +79,9 @@ export default async function PlayGamePage({ params }: { params: { gameId: strin
         
         {/* Game Details */}
         <div className="bg-slate-900 p-6 rounded-2xl border border-slate-800 space-y-4">
-           <h2 className="text-2xl font-bold text-white">How to play</h2>
+           <h2 className="text-3xl font-black mb-2 flex items-center gap-2 drop-shadow-lg">
+              <span className="text-2xl">🎮</span> <span className="bg-gradient-to-r from-green-400 to-emerald-500 bg-clip-text text-transparent uppercase tracking-tight">How to play</span>
+           </h2>
            <p className="text-slate-400 leading-relaxed whitespace-pre-wrap">
              {game.description || "Just click and enjoy! Use your mouse or tap the screen to play."}
            </p>
@@ -96,7 +98,9 @@ export default async function PlayGamePage({ params }: { params: { gameId: strin
 
         {/* Related Games */}
         <div className="pt-8">
-          <h2 className="text-2xl font-bold text-white mb-6">More Games to Play</h2>
+          <h2 className="text-3xl md:text-4xl font-black mb-8 flex items-center gap-3 drop-shadow-xl">
+             <span className="text-3xl md:text-4xl">🚀</span> <span className="bg-gradient-to-r from-blue-400 to-indigo-500 bg-clip-text text-transparent uppercase tracking-tight">More Games to Play</span>
+          </h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
             {relatedGames?.map((rg) => {
               const cleanTitle = rg.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');

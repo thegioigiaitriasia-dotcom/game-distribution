@@ -3,6 +3,7 @@ const { createClient } = require('@supabase/supabase-js');
 const { execSync } = require('child_process');
 const fs = require('fs');
 const path = require('path');
+const googleTTS = require('google-tts-api');
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
@@ -49,15 +50,40 @@ async function generateVideos() {
 
     console.log(`[${i+1}/${games.length}] Rendering: ${game.title}`);
     
+    // Generate TTS
+    let description = game.description || `Play ${game.title} for free on ArcadeGameFree! It's super fun and exciting.`;
+    if (description.length > 200) description = description.substring(0, 197) + '...';
+    const ttsFileName = `tts_${safeTitle}.mp3`;
+    const ttsPath = path.join(__dirname, 'public', ttsFileName);
+    try {
+      const base64AudioArray = await googleTTS.getAllAudioBase64(description, {
+        lang: 'en',
+        slow: false,
+        host: 'https://translate.google.com',
+        splitPunct: ',.?'
+      });
+      const audioBuffer = Buffer.concat(base64AudioArray.map(a => Buffer.from(a.base64, 'base64')));
+      fs.writeFileSync(ttsPath, audioBuffer);
+    } catch(e) {
+      console.error("TTS failed for", game.title, e.message);
+    }
+
     const props = JSON.stringify({
       title: game.title,
-      thumbnail: game.thumbnail_url
+      thumbnail: game.thumbnail_url,
+      domain: process.env.SITE_DOMAIN || 'arcadegamefree.asia',
+      description: description,
+      ttsFile: ttsFileName
     });
 
     try {
-      // Execute Remotion CLI
-      // Uses the 'GamePromo' composition from src/Composition.tsx
-      execSync(`npx remotion render src/index.ts GamePromo "${outputPath}" --props='${props}'`, { stdio: 'inherit' });
+      // Viết props ra file json để tránh lỗi escape dấu ngoặc kép trên Windows CMD
+      const propsPath = path.join(clipsDir, 'props.json');
+      fs.writeFileSync(propsPath, props);
+
+      // Dùng cổng động (thay đổi theo mỗi video) để tránh lỗi kẹt cổng (port is not available)
+      const port = 3333 + i;
+      execSync(`npx remotion render src/index.ts GamePromo "${outputPath}" --props="${propsPath}" --port=${port}`, { stdio: 'inherit' });
       console.log(`✅ Success: ${outputPath}`);
     } catch (err) {
       console.error(`❌ Failed to render ${game.title}:`, err.message);
