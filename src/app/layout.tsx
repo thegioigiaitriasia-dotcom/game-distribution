@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://arcadegamefree.asia"),
-  title: "ArcadeGameFree - 10,000+ Free Unblocked Games",
+  metadataBase: new URL("https://arcadehubfree.asia"),
+  title: "ArcadeHubFree - 10,000+ Free Unblocked Games",
   description: "Play thousands of free online games, action, puzzles, and more! Unblocked and instant play.",
   manifest: "/manifest.json",
 };

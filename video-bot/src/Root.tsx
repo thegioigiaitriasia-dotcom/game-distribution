@@ -28,7 +28,7 @@ export const RemotionRoot: React.FC = () => {
         defaultProps={{
           title: "Awesome HTML5 Game",
           thumbnail: "https://images.unsplash.com/photo-1552820728-8b83bb6b773f?w=1080&q=80",
-          domain: "arcadegamefree.asia",
+          domain: "arcadehubfree.asia",
           description: "An awesome game description goes here.",
           ttsFile: ""
         } as GamePromoProps}

@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: { params: { gameId: string } 
   if (!game) return { title: 'Game Not Found' };
   
   return {
-    title: `Play ${game.title} Unblocked & Free Online - ArcadeGameFree`,
+    title: `Play ${game.title} Unblocked & Free Online - ArcadeHubFree`,
     description: `Play ${game.title} unblocked at school! ${game.description || 'No download required. Click and play instantly!'}`.substring(0, 160),
     openGraph: {
       title: `${game.title} - Play Free Unblocked`,

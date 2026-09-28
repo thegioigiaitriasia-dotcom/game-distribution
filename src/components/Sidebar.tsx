@@ -34,7 +34,7 @@ export default function Sidebar() {
   return (
     <aside className="hidden md:flex w-64 flex-col bg-slate-900 border-r border-slate-800 p-4 h-screen sticky top-0 overflow-y-auto">
       <Link href="/" className="text-2xl font-black bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent mb-8 pl-2 shrink-0">
-        🕹️ ArcadeGameFree
+        🕹️ ArcadeHubFree
       </Link>
       
       <div className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-4 pl-2 shrink-0">Menu</div>
@@ -64,7 +64,7 @@ export default function Sidebar() {
 
       <div className="mt-auto pt-8 shrink-0">
         <div className="bg-slate-800/50 p-4 rounded-xl border border-slate-700/50">
-          <h4 className="text-white font-bold mb-1">ArcadeGameFree VIP</h4>
+          <h4 className="text-white font-bold mb-1">ArcadeHubFree VIP</h4>
           <p className="text-xs text-slate-400 mb-3">Save your favorite games entirely on your device. No login needed!</p>
         </div>
       </div>

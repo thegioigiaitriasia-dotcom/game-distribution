@@ -17,7 +17,7 @@ export default function Navbar() {
       <div className="flex-1 md:hidden">
         {/* Mobile Logo */}
         <Link href="/" className="text-xl font-black bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
-          🕹️ ArcadeGameFree
+          🕹️ ArcadeHubFree
         </Link>
       </div>
       

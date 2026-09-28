@@ -51,7 +51,7 @@ async function generateVideos() {
     console.log(`[${i+1}/${games.length}] Rendering: ${game.title}`);
     
     // Generate TTS
-    let description = game.description || `Play ${game.title} for free on ArcadeGameFree! It's super fun and exciting.`;
+    let description = game.description || `Play ${game.title} for free on ArcadeHubFree! It's super fun and exciting.`;
     if (description.length > 200) description = description.substring(0, 197) + '...';
     const ttsFileName = `tts_${safeTitle}.mp3`;
     const ttsPath = path.join(__dirname, 'public', ttsFileName);
@@ -71,7 +71,7 @@ async function generateVideos() {
     const props = JSON.stringify({
       title: game.title,
       thumbnail: game.thumbnail_url,
-      domain: process.env.SITE_DOMAIN || 'arcadegamefree.asia',
+      domain: process.env.SITE_DOMAIN || 'arcadehubfree.asia',
       description: description,
       ttsFile: ttsFileName
     });

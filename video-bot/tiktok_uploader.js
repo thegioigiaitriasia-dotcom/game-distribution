@@ -10,7 +10,7 @@ puppeteer.use(StealthPlugin());
 // --- CONFIGURATION TỪ .ENV ---
 // Dùng thư mục profile độc lập để không bao giờ đụng độ với Chrome thật của user
 const BOT_PROFILE_DIR = path.join(__dirname, 'bot-profile');
-const SITE_DOMAIN = process.env.SITE_DOMAIN || 'arcadegamefree.asia';
+const SITE_DOMAIN = process.env.SITE_DOMAIN || 'arcadehubfree.asia';
 const CLIPS_DIR = path.join(__dirname, 'clips');
 
 async function delay(ms) {

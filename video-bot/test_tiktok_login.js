@@ -33,7 +33,7 @@ async function testTikTokLogin() {
     try {
         console.log("🌐 Truy cập trang cá nhân TikTok...");
         // Bỏ networkidle2 vì TikTok load rất nhiều script ngầm, chuyển sang domcontentloaded và tăng timeout
-        await page.goto('https://www.tiktok.com/@arcadegamefree', { waitUntil: 'domcontentloaded', timeout: 60000 });
+        await page.goto('https://www.tiktok.com/@arcadehubfree', { waitUntil: 'domcontentloaded', timeout: 60000 });
         
         console.log("✅ Đã truy cập thành công. Vui lòng kiểm tra trên màn hình xem tài khoản đã được đăng nhập đúng chưa.");
         
