@@ -33,8 +33,9 @@ export default function Sidebar() {
 
   return (
     <aside className="hidden md:flex w-64 flex-col bg-slate-900 border-r border-slate-800 p-4 h-screen sticky top-0 overflow-y-auto">
-      <Link href="/" className="text-2xl font-black bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent mb-8 pl-2 shrink-0">
-        🕹️ ArcadeHubFree
+      <Link href="/" className="text-xl font-black bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent mb-8 shrink-0 whitespace-nowrap flex items-center gap-2">
+        <span className="text-2xl">🕹️</span>
+        <span>ArcadeHubFree</span>
       </Link>
       
       <div className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-4 pl-2 shrink-0">Menu</div>

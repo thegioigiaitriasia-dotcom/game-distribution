@@ -16,8 +16,9 @@ export default function Navbar() {
     <header className="sticky top-0 z-50 bg-slate-950/80 backdrop-blur-md border-b border-slate-800 px-4 md:px-8 h-16 flex items-center justify-between gap-4">
       <div className="flex-1 md:hidden">
         {/* Mobile Logo */}
-        <Link href="/" className="text-xl font-black bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
-          🕹️ ArcadeHubFree
+        <Link href="/" className="text-lg font-black bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent whitespace-nowrap flex items-center gap-1.5">
+          <span className="text-xl">🕹️</span>
+          <span>ArcadeHubFree</span>
         </Link>
       </div>
       
