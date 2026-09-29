@@ -70,4 +70,4 @@ async function fetchAndPushGames(startPage = 6, endPage = 30) {
   }
 }
 
-fetchAndPushGames(31, 50); // Fetch next 20 pages (40 games per page) = 800 games (to reach 2000 total)
+fetchAndPushGames(51, 150); // Fetch next 100 pages (4000 games) to massively boost SEO
