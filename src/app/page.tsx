@@ -23,7 +23,11 @@ export default async function Home({ searchParams }: { searchParams: { q?: strin
   if (searchQuery) {
     query = query.ilike('title', `%${searchQuery}%`);
   } else if (categoryFilter) {
-    query = query.contains('tags', [categoryFilter]);
+    const { applyCategoryFilter } = await import('@/utils/category');
+    query = applyCategoryFilter(query, categoryFilter);
+    if (categoryFilter === 'trending') {
+      query = query.order('play_count', { ascending: false });
+    }
   }
   
   // Fetch initial 16 games

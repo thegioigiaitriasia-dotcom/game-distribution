@@ -18,7 +18,11 @@ export async function GET(request: Request) {
   if (q) {
     query = query.ilike('title', `%${q}%`);
   } else if (category) {
-    query = query.contains('tags', [category]);
+    const { applyCategoryFilter } = await import('@/utils/category');
+    query = applyCategoryFilter(query, category);
+    if (category === 'trending') {
+      query = query.order('play_count', { ascending: false });
+    }
   }
 
   // Calculate range
